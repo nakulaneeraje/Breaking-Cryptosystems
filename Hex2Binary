@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+  char ch[100],temp[100];
+  FILE *fi,*fo;
+  fi = fopen("output_clean2.txt","r+");
+  fo = fopen("output_2.txt","w+");
+  long int j = 0;
+  while(j < 200000)
+  {
+    int flag = 0;
+    strcpy(ch,temp);
+    fscanf(fi,"%s",ch);
+    for(int i=0;i<16;i++){
+          //int j=0;
+          int x = ch[i]-'f';
+          for(int k=0;k<4;k++){
+
+            fprintf(fo, "%d", ((x>>(3-k))&1) );
+          }
+    }
+    fprintf(fo,"\n");
+    j++;
+  }
+}
+
