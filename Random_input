@@ -1,0 +1,50 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+int main()
+{
+  FILE *fi,*fo;
+  fi = fopen("random2.txt","r+");
+  fo = fopen("input_random2.txt","w+");
+  ll i = 0;
+  ll k;
+  char temp1[64];
+  ll temp2[64];
+  ll t1,t2;
+  char  s1[17],s2[17];
+  int  s[64] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0};
+  // s is the required input XOR 
+
+  while(i < 100000)
+  {
+    fscanf(fi,"%s",temp1);             // scanning line from input
+    for(int j = 0 ; j < 64 ; j++)
+    {
+      t1 = temp1[j]-'0';
+      t2 = s[j];
+      //cout << "t2 = =" << t2  << " " << s[j] << " " << temp1[j]<< "\n";
+      temp2[j] =(t1^t2);
+
+    }
+    int l;
+    for(l = 0 ; l < 16 ; l++)
+    {
+      int h1,h2;
+      h1 = (temp1[l*4]-'0')*8+(temp1[l*4+1]-'0')*4+(temp1[l*4+2]-'0')*2+(temp1[l*4+3]-'0'); // calculating decimal value
+      h2 = temp2[l*4]*8+temp2[l*4+1]*4+temp2[l*4+2]*2+temp2[l*4+3];                   // calculating decimal value
+      s1[l] = char(h1 + 'f');
+      s2[l] = char(h2 + 'f');
+    }
+    s1[l] = '\0';
+    s2[l] = '\0';
+    i++;
+    fprintf(fo, "%s\n",s1);
+    fprintf(fo, "c\n");
+    fprintf(fo, "%s\n",s2);
+    fprintf(fo, "c\n");
+  }
+  fprintf(fo,"back\n");
+  fprintf(fo,"exit\n");
+}
+
